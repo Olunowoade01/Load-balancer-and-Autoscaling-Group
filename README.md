@@ -25,7 +25,7 @@ An Application Load Balancer is a type of load balancing service that distribute
 ![2](./img/2%20VPC%20AUTO%20SIGN%20.png)
 
 
- - i Follow the same process for the second EC2 instance:
+ - I Follow the same process for the second EC2 instance:
 
 ![3](./img/4%20stage%202%20ec2.png)
 
@@ -50,7 +50,7 @@ An Application Load Balancer is a type of load balancing service that distribute
 
 
 
- - i Follow the same procedure for the second instance:
+ - I Follow the same procedure for the second instance:
 ![7](./img/second%20ip.png)
 
 
@@ -202,7 +202,7 @@ i Selected both instances and click on "Include as pending below"
 
 
 
-     
+
 
 4. **Auto Scaling Template Creation:**
    - The Auto Scaling template is successfully created. I return to the Auto Scaling Group console and proceed.
