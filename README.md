@@ -1,6 +1,10 @@
 # Load-balancer-and-Autoscaling-Group
 This load balancer and Autoscaling Group
 
+1. # The purpose of this project to understand the concepts of high availability and scalability in cloud computing 
+
+2. To learn how to create target groups and set up an Application Load Balancer
+
 This project will be divided into 2 stages:
 
 1. Setting up an Application Load Balancer (ALB)
@@ -285,6 +289,20 @@ and lunch with the template i already created "my-new-asg-lt"
 
 
 - understood the concept of Auto scaling group and how they dynamically adjust the number of instance based on workload.
+
+
+
+
+## PROJECT GOALS
+
+
+1. > i learned about Load Balancers and Auto Scaling Groups in AWS
+
+
+
+2. I explore the importance of load balancing and auto-scaling in maintaining the reliability availability and performance of web application.
+
+
 
 
 
