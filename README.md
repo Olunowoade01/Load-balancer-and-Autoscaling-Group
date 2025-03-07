@@ -13,22 +13,27 @@ This project will be divided into 2 stages:
 
 1. ## Stage 1: Setting up the Application Load Balancer
 
-An Application Load Balancer is a type of load balancing service that distributes incoming application traffic across multiple targets, such as EC2 instances.
+Application Load Balancer (ALB) is a type of load balancer service that distributes incoming application traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in multiple Availability Zones. 
 
-### Step 1: Setting up ALB
+Application Load Balancer (ALB) operates at the application layer (Layer 7) of the OSI model. This allows it to perform more advanced functions compared to traditional load balancers. Specifically, it can handle HTTP/HTTPS traffic, making it ideal for web applications.
 
-> create 2 instance the first inatnce will have the configuration 
+
+## Step 1: Setting Up the Application Load Balancer (ALB)
+ > Creating Two EC2 Instances
+
+The first step in setting up the Application Load Balancer (ALB) is to launch two EC2 instances that will serve as the targets for the load balancer. The instances will handle the application traffic routed by the ALB.
 
 
 ![1](./img/1%20first%20ec2.png)
 
 
- > A new security is created ssh and http inbound rule is added to the security.
+ > A new security group is created, and inbound rules are configured to allow SSH (port 22) for remote access and HTTP (port 80) to handle web traffic.
+
 
 ![2](./img/2%20VPC%20AUTO%20SIGN%20.png)
 
 
- - i configure and follow the same process for my second EC2 
+ - I followed the same configuration process for the second EC2 instance, ensuring that it was set up with identical settings as the first instance.
 
 ![3](./img/4%20stage%202%20ec2.png)
 
@@ -40,52 +45,63 @@ An Application Load Balancer is a type of load balancing service that distribute
 ![5](./img/5%20stage%202%20ec2%20created.png)
 
 
-2. #  The next step i click on my first instance and copy the IP address to paste on web browser
-
+>  Firstly, we are going to test our instances by Checking if our public IPv4 addresses has access to the web server.
+> 
 ![6](./img/copy%20first%20inatnce%20ip.png)
 
 
- > i copy the first ip address and paste on the web broser and it's working properly 
-
+ > The public IP address for the first and second ec2 instance is copied and added to a web browser. The result shows our instance has access to the internet.
 
 
 ![running](./img/%20Ec2%20instant%20working.png)
 
 
 
- > i followed the same procedure  and choose my second instance and copy the IP address to paste on web browser
+ > I followed the same procedure for the second instance, selected it, copied its IP address, and pasted it into the web browser.
 
 ![7](./img/second%20ip.png)
 
 
 
-  > my second IP address working perfectly
+  > The IP address of the second instance is working perfectly.
 
 
 ![running](./img/only%20use%20for%20second%20ip.png)
 
 
-3. # Create a Load Balancer
+3. ## Create An Appliction Load Balancer
 
-   # After a succesfully testing the both IP address the next stage is to create a load balancer to route traffic between them
+ > I Navigate to *Load Balancers* option under the Ec2 menu, select *create Load balancer*, and select *application Load balancer* as we are using HTTP for web pages.
 
-> from the EC2 consol i stroll down the Load balancer and click on it 
+
 
 ![load balancer](./img/low%20balance.png)
 
 
-# After chosing the load balancer console it take me to the next stage where i hit the create load balancer
+> After selecting the Load Balancer console, I was taken to the next stage where I clicked on Create Load Balancer.
+
+> This version improves the flow and readability. 
+
+
 
 ![create LB](./img/create%20load%20.png)
 
 
- # After moving to the next stage i choose to create a flexible feature set for application with HTTP traffic
+> After moving to the next stage, I selected the option to create a flexible feature set for an application that supports HTTP traffic.
 
+
+> This version ensures the process is clear and concise.
 
 ![create](./img/create%20load%20b2.png)
 
 
-# during the process of creating my load balancer, i created a new security group and new target group to add to my traffic
+ ## Creating Traget Group
+
+> Luckily for us, AWS has made it easy to create a target group just as you are configuring your Load balancer. 
+
+- The Target group will be named '*my-alb-tg*
+
+- The 2 instances will be selected and '*incuded as pending below*'
 
 
 ![target and sg](./img/new%20security%20group.png)
@@ -108,12 +124,14 @@ ip address IPV4
 i Selected both instances and click on "Include as pending below"
 
 
->  my taregt group as been created and the next step is to select both instance and click on include as pending bellow
+> My target group has been created, and the next step is to select both instances and click on "Include as Pending" below.
 
 ![TG2](./img/tg%20stage2.png)
 
 
-#  Target group successfully created the next step to return back to my load balancer and complete my creation
+#  The target group was successfully created. The next step is to return to my load balancer and complete the creation process.
+
+> This version enhances readability and flow.
 
 ![tg3](./img/tg3.png)
 
@@ -123,12 +141,8 @@ i Selected both instances and click on "Include as pending below"
 ![ld b](./img/ld%20b.png)
 
 
- > A summary of what of my application load balancer i configure by generating a name and using internert facing and allow IPv4, 
-> on security group using the security group that i created (alb-demo-sg-1) which as port 80 and HTTP traffic 
-> on network mappin i use the avaliable network zone in the vpc
+ > In summary, we have created an Application Load Balancer that is internet-facing, we are using the ALB-demo-SG as our security group which has port 80 open for HTTP traffic. We are using 3 different availabiltiy zones in the VPC so it is highly available, and we are listening for traffic on port 80 which would then route to our target group which has 2 instances in it.
 
-> listener and routin, i allow HTTP port 80 and connected to my (my-alb-demo-tg) on target group 
-p
 
 
 ![LB SUMMARY](./img/ld%20b.png)
@@ -136,9 +150,7 @@ p
 
 
 
-> load balance created succeffuly
-and in active state.
-
+> The load balancer was created successfully and is now in an active state.
 
 ![ldb](./img/ld%20balancer%20created%20.png)
 
@@ -146,17 +158,15 @@ and in active state.
 
 
 # Testing the Load Balancer
+1. Copy the DNS Name:
 
-1. **Copy the DNS Name:**
+The next step is to copy the DNS name of the load balancer and paste it into the web browser to verify that it is working properly.
 
-   > The next stage is too copy the DNS name and paste it on web browser to confirm if working properly
-
-if we refresh the page the ip keep change to another host 
-this show that that traffic is been relying aroun d the two instance
+When I refreshed the page, I noticed that the IP address kept changing to a different host. This indicates that traffic is being distributed between the two instances.
 
 ![dns](./img/dns.png)
 
- > Let's same something goes wrong with our first instance going we can semulate by going back to our instance and select  one of the instance to stop 
+ > Let’s simulate a scenario where something goes wrong with the first instance. To do this, we can go back to our EC2 instances and stop one of them.
 
 
 
@@ -164,7 +174,7 @@ this show that that traffic is been relying aroun d the two instance
 ![instant](./img/instant%20stop.png)
 
 
-> if we  rephresh that we will noticed one instant as stop working and others still running 
+> If we refresh the page, we will notice that one instance has stopped working while the other is still running.
 
 
 
@@ -301,6 +311,7 @@ and lunch with the template i already created "my-new-asg-lt"
 
 
 2. I explore the importance of load balancing and auto-scaling in maintaining the reliability availability and performance of web application.
+
 
 
 
